@@ -31,6 +31,7 @@ include/nix/eval-inline.hh
 include/nix/eval.hh
 include/nix/finally.hh
 include/nix/fs-accessor.hh
+include/nix/function-trace.hh
 include/nix/get-drvs.hh
 include/nix/globals.hh
 include/nix/hash.hh

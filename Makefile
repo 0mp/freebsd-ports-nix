@@ -29,8 +29,7 @@ TEST_DEPENDS=	dot:graphics/graphviz
 
 USES=		autoreconf bison:build compiler:c++17-lang gmake localbase \
 		pkgconfig sqlite:3 ssl tar:xz
-# XXX: Is it still needed?
-# USE_LDCONFIG=	yes
+USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	NixOS
 

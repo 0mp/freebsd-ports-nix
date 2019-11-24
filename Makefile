@@ -46,6 +46,7 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes \
 			mandir=${MANPREFIX}/man
 MAKE_JOBS_UNSAFE=	yes
+TEST_ENV=		PATH="$${PATH}:${STAGEDIR}${PREFIX}/bin"
 TEST_TARGET=		installcheck
 
 # grealpath and gnustat are needed for tests.

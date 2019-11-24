@@ -53,6 +53,8 @@ TEST_TARGET=		installcheck
 # grealpath and gnustat are needed for tests.
 BINARY_ALIAS=	realpath=grealpath stat=gnustat
 
+SUB_FILES=	pkg-message
+
 GROUPS=		nixbld
 
 OPTIONS_DEFINE=	DOCS

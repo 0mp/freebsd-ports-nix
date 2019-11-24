@@ -69,9 +69,4 @@ post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/add-nixbld-users ${STAGEDIR}${DATADIR}
 	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} ${_STRIP_TARGETS}
 
-pre-test:
-	# Disable hanging tests.
-	${REINPLACE_CMD} -e 's|restricted.sh||g' ${WRKSRC}/tests/local.mk
-
-
 .include <bsd.port.mk>

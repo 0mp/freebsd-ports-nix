@@ -26,7 +26,8 @@ LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
 		libgc.so:devel/boehm-gc \
 		libsodium.so:security/libsodium
 TEST_DEPENDS=	dot:graphics/graphviz \
-		gxargs:misc/findutils
+		gxargs:misc/findutils \
+		git:devel/git
 
 USES=		autoreconf bison:build compiler:c++17-lang gmake localbase \
 		pkgconfig sqlite:3 ssl tar:xz
@@ -75,9 +76,9 @@ _FAILING_TESTS=	check.sh
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
 _BROKEN_TESTS=	check-reqs.sh gc-auto.sh nar-access.sh pass-as-file.sh \
-		tarball.sh timeout.sh
+		tarball.sh timeout.sh fetchGit.sh
 # These tests are skipped by the testing framework.
-_SKIPPED_TESTS=	fetchGit.sh fetchMercurial.sh
+_SKIPPED_TESTS=	fetchMercurial.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		case-hack.sh check-refs.sh dependencies.sh dump-db.sh \

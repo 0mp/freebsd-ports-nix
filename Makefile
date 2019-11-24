@@ -78,20 +78,20 @@ _FAILING_TESTS=	check.sh
 # These test suffer from some problems like a misconfigued testing environment
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
-_BROKEN_TESTS=	check-reqs.sh fetchGit.sh gc-auto.sh nar-access.sh \
-		pass-as-file.sh tarball.sh
+_BROKEN_TESTS=	fetchGit.sh gc-auto.sh nar-access.sh pass-as-file.sh tarball.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
-		case-hack.sh check-refs.sh dependencies.sh dump-db.sh \
-		export-graph.sh export.sh fetchMercurial.sh fetchurl.sh \
-		filter-source.sh fixed.sh function-trace.sh gc-concurrent.sh \
-		gc-runtime.sh gc.sh hash.sh import-derivation.sh init.sh \
-		lang.sh linux-sandbox.sh logging.sh misc.sh multiple-outputs.sh \
-		nix-build.sh nix-channel.sh nix-copy-ssh.sh nix-profile.sh \
-		nix-shell.sh optimise-store.sh placeholders.sh plugins.sh \
-		post-hook.sh pure-eval.sh referrers.sh remote-store.sh \
-		repair.sh run.sh search.sh secure-drv-outputs.sh signing.sh \
-		simple.sh structured-attrs.sh timeout.sh user-envs.sh
+		case-hack.sh check-refs.sh check-reqs.sh dependencies.sh \
+		dump-db.sh export-graph.sh export.sh fetchMercurial.sh \
+		fetchurl.sh filter-source.sh fixed.sh function-trace.sh \
+		gc-concurrent.sh gc-runtime.sh gc.sh hash.sh \
+		import-derivation.sh init.sh lang.sh linux-sandbox.sh \
+		logging.sh misc.sh multiple-outputs.sh nix-build.sh \
+		nix-channel.sh nix-copy-ssh.sh nix-profile.sh nix-shell.sh \
+		optimise-store.sh placeholders.sh plugins.sh post-hook.sh \
+		pure-eval.sh referrers.sh remote-store.sh repair.sh run.sh \
+		search.sh secure-drv-outputs.sh signing.sh simple.sh \
+		structured-attrs.sh timeout.sh user-envs.sh
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
@@ -104,6 +104,7 @@ pre-test:
 	# Patch tests.
 	${REINPLACE_CMD} -e 's| xargs | gxargs |g' ${WRKSRC}/tests/push-to-store.sh
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/timeout.nix
+	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/check-reqs.nix
 
 post-test:
 	${RM} -r /tmp/nix-test

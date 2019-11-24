@@ -45,7 +45,7 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 MAKE_JOBS_UNSAFE=	yes
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
-MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes
+MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes mandir=${MANPREFIX}/man
 # grealpath and gnustat are needed for tests.
 TEST_TARGET=		installcheck
 

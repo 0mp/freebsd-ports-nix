@@ -69,5 +69,7 @@ post-install:
 
 pre-test:
 	${MKDIR} /tmp/nix-test
+	# Disable hanging tests.
+	${REINPLACE_CMD} -e 's|restricted.sh||g' ${WRKSRC}/tests/local.mk
 
 .include <bsd.port.mk>

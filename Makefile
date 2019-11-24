@@ -72,4 +72,8 @@ pre-test:
 	# Disable hanging tests.
 	${REINPLACE_CMD} -e 's|restricted.sh||g' ${WRKSRC}/tests/local.mk
 
+
+post-test:
+	${RM} -r /tmp/nix-test
+
 .include <bsd.port.mk>

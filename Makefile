@@ -69,4 +69,7 @@ post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/add-nixbld-users ${STAGEDIR}${DATADIR}
 	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} ${_STRIP_TARGETS}
 
+pre-test:
+	${MKDIR} /tmp/nix-test
+
 .include <bsd.port.mk>

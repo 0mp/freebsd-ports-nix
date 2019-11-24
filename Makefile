@@ -72,13 +72,10 @@ _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \
 _SETUP_TESTS=	init.sh
 # These tests never finish.
 _HANGING_TESTS=	restricted.sh
-# These tests probably fail due to something more complicated than a missing
-# binary or an incompatibility between GNU and BSD tools.
-_FAILING_TESTS=	check.sh
 # These test suffer from some problems like a misconfigued testing environment
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
-_BROKEN_TESTS=	fetchGit.sh gc-auto.sh tarball.sh
+_BROKEN_TESTS=	check.sh fetchGit.sh gc-auto.sh tarball.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		case-hack.sh check-refs.sh check-reqs.sh dependencies.sh \

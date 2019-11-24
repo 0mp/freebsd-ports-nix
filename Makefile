@@ -109,6 +109,8 @@ pre-test:
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/nar-access.nix
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/pass-as-file.sh
 
+	${REINPLACE_CMD} -e 's| wc | /usr/bin/wc |g' ${WRKSRC}/tests/gc-auto.sh
+
 post-test:
 	${RM} -r /tmp/nix-test
 

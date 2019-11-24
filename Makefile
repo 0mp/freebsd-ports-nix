@@ -51,6 +51,8 @@ TEST_TARGET=		installcheck
 
 BINARY_ALIAS=	realpath=grealpath stat=gnustat
 
+GROUPS=	nixbld
+
 OPTIONS_DEFINE=	DOCS
 # XXX: Test with DOCS turned off.
 

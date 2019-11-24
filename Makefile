@@ -45,7 +45,7 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes \
 			mandir=${MANPREFIX}/man
-TEST_ENV=		PATH="$${PATH}:${STAGEDIR}${PREFIX}/bin"
+TEST_ARGS=		nix_tests="${_SETUP_TESTS} ${_PASSING_TESTS}"
 TEST_TARGET=		installcheck
 
 # grealpath and gnustat are needed for tests.
@@ -63,6 +63,34 @@ _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \
 		lib/libnixexpr.so lib/libnixmain.so lib/libnixstore.so \
 		lib/libnixutil.so
 
+# These tests are required to be executed before any tests as they prepare
+# environment.
+_SETUP_TESTS=	init.sh
+# These tests never finish.
+_HANGING_TESTS=	restricted.sh
+# These tests probably fail due to something more complicated than a missing
+# binary or an incompatibility between GNU and BSD tools.
+_FAILING_TESTS=	check.sh
+# These test suffer from some problems like a misconfigued testing environment
+# (binaries are not found in the PATH) or incompatibilities between GNU and BSD
+# tools.
+_BROKEN_TESTS=	check-reqs.sh gc-auto.sh nar-access.sh pass-as-file.sh \
+		tarball.sh timeout.sh
+# These tests are skipped by the testing framework.
+_SKIPPED_TESTS=	fetchGit.sh fetchMercurial.sh
+# These tests just pass.
+_PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
+		case-hack.sh check-refs.sh dependencies.sh dump-db.sh \
+		export-graph.sh export.sh fetchurl.sh filter-source.sh fixed.sh \
+		function-trace.sh gc-concurrent.sh gc-runtime.sh gc.sh hash.sh \
+		import-derivation.sh init.sh lang.sh linux-sandbox.sh \
+		logging.sh misc.sh multiple-outputs.sh nix-build.sh \
+		nix-channel.sh nix-copy-ssh.sh nix-profile.sh nix-shell.sh \
+		optimise-store.sh placeholders.sh plugins.sh post-hook.sh \
+		pure-eval.sh referrers.sh remote-store.sh repair.sh run.sh \
+		search.sh secure-drv-outputs.sh signing.sh simple.sh \
+		structured-attrs.sh user-envs.sh
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_SCRIPT} ${FILESDIR}/add-nixbld-users ${STAGEDIR}${DATADIR}
@@ -70,8 +98,6 @@ post-install:
 
 pre-test:
 	${MKDIR} /tmp/nix-test
-	# Disable hanging tests.
-	${REINPLACE_CMD} -e 's|restricted.sh||g' ${WRKSRC}/tests/local.mk
 
 	# Patch tests.
 	${REINPLACE_CMD} -e 's| xargs | gxargs |g' ${WRKSRC}/tests/push-to-store.sh

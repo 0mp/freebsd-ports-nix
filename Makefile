@@ -25,7 +25,8 @@ LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
 		libeditline.so:devel/editline \
 		libgc.so:devel/boehm-gc \
 		libsodium.so:security/libsodium
-TEST_DEPENDS=	dot:graphics/graphviz
+TEST_DEPENDS=	dot:graphics/graphviz \
+		gxargs:misc/findutils
 
 USES=		autoreconf bison:build compiler:c++17-lang gmake localbase \
 		pkgconfig sqlite:3 ssl tar:xz
@@ -72,6 +73,8 @@ pre-test:
 	# Disable hanging tests.
 	${REINPLACE_CMD} -e 's|restricted.sh||g' ${WRKSRC}/tests/local.mk
 
+	# Patch tests.
+	${REINPLACE_CMD} -e 's| xargs | gxargs |g' ${WRKSRC}/tests/push-to-store.sh
 
 post-test:
 	${RM} -r /tmp/nix-test

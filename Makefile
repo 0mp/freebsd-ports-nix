@@ -40,12 +40,10 @@ CONFIGURE_ARGS=		--disable-seccomp-sandboxing \
 			--enable-gc
 CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 			OPENSSL_LIBS="-L ${OPENSSLLIB}"
-# XXX
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes \
 			mandir=${MANPREFIX}/man
-MAKE_JOBS_UNSAFE=	yes
 TEST_ENV=		PATH="$${PATH}:${STAGEDIR}${PREFIX}/bin"
 TEST_TARGET=		installcheck
 

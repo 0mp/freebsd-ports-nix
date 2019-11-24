@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	nix
-DISTVERSION=	2.2.2
+DISTVERSION=	2.3.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	0mp@FreeBSD.org

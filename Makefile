@@ -79,7 +79,7 @@ _FAILING_TESTS=	check.sh
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
 _BROKEN_TESTS=	check-reqs.sh fetchGit.sh gc-auto.sh nar-access.sh \
-		pass-as-file.sh tarball.sh timeout.sh
+		pass-as-file.sh tarball.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		case-hack.sh check-refs.sh dependencies.sh dump-db.sh \
@@ -91,7 +91,7 @@ _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		nix-shell.sh optimise-store.sh placeholders.sh plugins.sh \
 		post-hook.sh pure-eval.sh referrers.sh remote-store.sh \
 		repair.sh run.sh search.sh secure-drv-outputs.sh signing.sh \
-		simple.sh structured-attrs.sh user-envs.sh
+		simple.sh structured-attrs.sh timeout.sh user-envs.sh
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
@@ -103,6 +103,7 @@ pre-test:
 
 	# Patch tests.
 	${REINPLACE_CMD} -e 's| xargs | gxargs |g' ${WRKSRC}/tests/push-to-store.sh
+	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/timeout.nix
 
 post-test:
 	${RM} -r /tmp/nix-test

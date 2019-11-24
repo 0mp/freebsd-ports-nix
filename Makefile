@@ -15,10 +15,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/ax_cxx_compile_stdcxx.m4:devel/autoconf-archive \
 		bash:shells/bash \
 		docbook-xsl-ns>=0:textproc/docbook-xsl-ns \
-		xmllint:textproc/libxml2 \
-		xsltproc:textproc/libxslt \
 		gnustat:sysutils/coreutils \
-		grealpath:sysutils/coreutils
+		grealpath:sysutils/coreutils \
+		xmllint:textproc/libxml2 \
+		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
 		libbrotlienc.so:archivers/brotli \
 		libcurl.so:ftp/curl \
@@ -29,9 +29,9 @@ TEST_DEPENDS=	dot:graphics/graphviz
 
 USES=		autoreconf bison:build compiler:c++17-lang gmake localbase \
 		pkgconfig sqlite:3 ssl tar:xz
-USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	NixOS
+USE_LDCONFIG=	yes
 
 HAS_CONFIGURE=		yes
 # Workaround for bashisms in the configure script.
@@ -41,16 +41,17 @@ CONFIGURE_ARGS=		--disable-seccomp-sandboxing \
 CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 			OPENSSL_LIBS="-L ${OPENSSLLIB}"
 # XXX
-MAKE_JOBS_UNSAFE=	yes
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
-MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes mandir=${MANPREFIX}/man
+MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes \
+			mandir=${MANPREFIX}/man
+MAKE_JOBS_UNSAFE=	yes
 # grealpath and gnustat are needed for tests.
 TEST_TARGET=		installcheck
 
 BINARY_ALIAS=	realpath=grealpath stat=gnustat
 
-GROUPS=	nixbld
+GROUPS=		nixbld
 
 OPTIONS_DEFINE=	DOCS
 # XXX: Test with DOCS turned off.

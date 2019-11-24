@@ -46,9 +46,9 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes \
 			mandir=${MANPREFIX}/man
 MAKE_JOBS_UNSAFE=	yes
-# grealpath and gnustat are needed for tests.
 TEST_TARGET=		installcheck
 
+# grealpath and gnustat are needed for tests.
 BINARY_ALIAS=	realpath=grealpath stat=gnustat
 
 GROUPS=		nixbld

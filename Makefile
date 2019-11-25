@@ -10,9 +10,8 @@ COMMENT=	Purely functional package manager
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-# XXX: Consider adding aws-sdk-cpp>0:devel/aws-sdk-cpp when S3 support is
-# compiling.
 BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/ax_cxx_compile_stdcxx.m4:devel/autoconf-archive \
+		aws-sdk-cpp>0:devel/aws-sdk-cpp \
 		bash:shells/bash \
 		docbook-xsl-ns>=0:textproc/docbook-xsl-ns \
 		gnustat:sysutils/coreutils \

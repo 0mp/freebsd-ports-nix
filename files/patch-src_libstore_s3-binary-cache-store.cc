@@ -20,6 +20,15 @@
  
      request.SetResponseStreamFactory([&]() {
          return Aws::New<std::stringstream>("STRINGSTREAM");
+@@ -155,7 +155,7 @@ S3Helper::DownloadResult S3Helper::getObject(
+         auto result = checkAws(fmt("AWS error fetching '%s'", key),
+             client->GetObject(request));
+ 
+-        res.data = decompress(result.GetContentEncoding(),
++        res.data = decompress(result.GetContentEncoding().c_str(),
+             dynamic_cast<std::stringstream &>(result.GetBody()).str());
+ 
+     } catch (S3Error & e) {
 @@ -238,8 +238,8 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
  
          auto res = s3Helper.client->HeadObject(

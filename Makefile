@@ -67,8 +67,7 @@ _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \
 		lib/libnixexpr.so lib/libnixmain.so lib/libnixstore.so \
 		lib/libnixutil.so
 
-# These tests are required to be executed before any tests as they prepare
-# environment.
+# These tests are required to be executed before any other tests.
 _SETUP_TESTS=	init.sh
 # These tests never finish.
 _HANGING_TESTS=	restricted.sh

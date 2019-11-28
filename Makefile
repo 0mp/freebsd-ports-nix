@@ -73,7 +73,7 @@ _HANGING_TESTS=	restricted.sh
 # These test suffer from some problems like a misconfigued testing environment
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
-_BROKEN_TESTS=	check.sh gc-auto.sh tarball.sh
+_BROKEN_TESTS=	check.sh gc-auto.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		case-hack.sh check-refs.sh check-reqs.sh dependencies.sh \
@@ -87,7 +87,7 @@ _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		plugins.sh post-hook.sh pure-eval.sh referrers.sh \
 		remote-store.sh repair.sh run.sh search.sh \
 		secure-drv-outputs.sh signing.sh simple.sh structured-attrs.sh \
-		timeout.sh user-envs.sh
+		tarball.sh timeout.sh user-envs.sh
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
@@ -105,6 +105,7 @@ pre-test:
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/pass-as-file.sh
 
 	${REINPLACE_CMD} -e 's| wc | /usr/bin/wc |g' ${WRKSRC}/tests/gc-auto.sh
+	${REINPLACE_CMD} -e 's| tar c tarball)| tar -cf - tarball)|' ${WRKSRC}/tests/tarball.sh
 
 post-test:
 	${RM} -r /tmp/nix-test

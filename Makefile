@@ -76,19 +76,19 @@ _HANGING_TESTS=	restricted.sh
 # These test suffer from some problems like a misconfigued testing environment
 # (binaries are not found in the PATH) or incompatibilities between GNU and BSD
 # tools.
-_BROKEN_TESTS=	check.sh gc-auto.sh
+_BROKEN_TESTS=	check.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
 		case-hack.sh check-refs.sh check-reqs.sh dependencies.sh \
 		dump-db.sh export-graph.sh export.sh fetchGit.sh \
 		fetchMercurial.sh fetchurl.sh filter-source.sh fixed.sh \
-		function-trace.sh gc-concurrent.sh gc-runtime.sh gc.sh hash.sh \
-		import-derivation.sh init.sh lang.sh linux-sandbox.sh \
-		logging.sh misc.sh multiple-outputs.sh nar-access.sh \
-		nix-build.sh nix-channel.sh nix-copy-ssh.sh nix-profile.sh \
-		nix-shell.sh optimise-store.sh pass-as-file.sh placeholders.sh \
-		plugins.sh post-hook.sh pure-eval.sh referrers.sh \
-		remote-store.sh repair.sh run.sh search.sh \
+		function-trace.sh gc-auto.sh gc-concurrent.sh gc-runtime.sh \
+		gc.sh hash.sh import-derivation.sh init.sh lang.sh \
+		linux-sandbox.sh logging.sh misc.sh multiple-outputs.sh \
+		nar-access.sh nix-build.sh nix-channel.sh nix-copy-ssh.sh \
+		nix-profile.sh nix-shell.sh optimise-store.sh pass-as-file.sh \
+		placeholders.sh plugins.sh post-hook.sh pure-eval.sh \
+		referrers.sh remote-store.sh repair.sh run.sh search.sh \
 		secure-drv-outputs.sh signing.sh simple.sh structured-attrs.sh \
 		tarball.sh timeout.sh user-envs.sh
 
@@ -107,7 +107,7 @@ pre-test:
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/nar-access.nix
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/pass-as-file.sh
 
-	${REINPLACE_CMD} -e 's| wc | /usr/bin/wc |g' ${WRKSRC}/tests/gc-auto.sh
+	${REINPLACE_CMD} -e 's| wc -l)| /usr/bin/grep -c .)|g' ${WRKSRC}/tests/gc-auto.sh
 	${REINPLACE_CMD} -e 's| tar c tarball)| tar -cf - tarball)|' ${WRKSRC}/tests/tarball.sh
 
 post-test:

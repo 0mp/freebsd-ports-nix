@@ -94,6 +94,9 @@ post-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/add-nixbld-users ${STAGEDIR}${DATADIR}
 	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} ${_STRIP_TARGETS}
 
+.if make(test) && command(nix)
+.error Nix has to be installed first before tests could be run.
+.elif command(nix)
 pre-test:
 	${MKDIR} /tmp/nix-test
 
@@ -108,5 +111,6 @@ pre-test:
 
 post-test:
 	${RM} -r /tmp/nix-test
+.endif
 
 .include <bsd.port.mk>

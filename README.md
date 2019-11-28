@@ -1,6 +1,6 @@
 # freebsd-ports-nix
 
-Community effort of adding a port of the Nix package manager to the FreeBSD Ports Collection.
+Nix package manager port for the FreeBSD Ports Collection.
 
 ## Community
 

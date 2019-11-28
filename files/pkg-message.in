@@ -3,12 +3,12 @@
 	type: install
 	message: <<EOD
 Nix build users may be created by executing the "add-nixbld-users" script
-(it is located in %%PREFIX%%%%DATADIR%%) and specifying
+(it is located in "%%DATADIR%%") and specifying
 the desired number of build users as an argument.
 
 For example:
 
-%%PREFIX%%%%DATADIR%%/add-nixbld-users 4
+%%DATADIR%%/add-nixbld-users 4
 
 is going to create 4 nixbld users.
 

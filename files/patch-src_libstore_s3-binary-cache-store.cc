@@ -9,16 +9,19 @@
      return outcome.GetResultWithOwnership();
  }
  
-@@ -54,7 +54,7 @@ class AwsLogger : public Aws::Utils::Logging::Formatte
+@@ -54,8 +54,10 @@ class AwsLogger : public Aws::Utils::Logging::Formatte
  
      void ProcessFormattedStatement(Aws::String && statement) override
      {
 -        debug("AWS: %s", chomp(statement));
 +        debug("AWS: %s", chomp((const std::string &)statement));
      }
++
++    void Flush() override {}
  };
  
-@@ -139,8 +139,8 @@ S3Helper::DownloadResult S3Helper::getObject(
+ static void initAWS()
+@@ -139,8 +141,8 @@ S3Helper::DownloadResult S3Helper::getObject(
  
      auto request =
          Aws::S3::Model::GetObjectRequest()
@@ -29,7 +32,7 @@
  
      request.SetResponseStreamFactory([&]() {
          return Aws::New<std::stringstream>("STRINGSTREAM");
-@@ -155,7 +155,7 @@ S3Helper::DownloadResult S3Helper::getObject(
+@@ -155,7 +157,7 @@ S3Helper::DownloadResult S3Helper::getObject(
          auto result = checkAws(fmt("AWS error fetching '%s'", key),
              client->GetObject(request));
  
@@ -38,7 +41,7 @@
              dynamic_cast<std::stringstream &>(result.GetBody()).str());
  
      } catch (S3Error & e) {
-@@ -238,8 +238,8 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
+@@ -238,8 +240,8 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
  
          auto res = s3Helper.client->HeadObject(
              Aws::S3::Model::HeadObjectRequest()
@@ -49,7 +52,7 @@
  
          if (!res.IsSuccess()) {
              auto & error = res.GetError();
-@@ -302,7 +302,7 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
+@@ -302,7 +304,7 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
  
              std::shared_ptr<TransferHandle> transferHandle =
                  transferManager->UploadFile(
@@ -58,7 +61,7 @@
                      Aws::Map<Aws::String, Aws::String>(),
                      nullptr /*, contentEncoding */);
  
-@@ -320,13 +320,13 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
+@@ -320,13 +322,13 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
  
              auto request =
                  Aws::S3::Model::PutObjectRequest()
@@ -76,7 +79,7 @@
  
              auto stream = std::make_shared<istringstream_nocopy>(data);
  
-@@ -393,9 +393,9 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
+@@ -393,9 +395,9 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
              auto res = checkAws(format("AWS error listing bucket '%s'") % bucketName,
                  s3Helper.client->ListObjects(
                      Aws::S3::Model::ListObjectsRequest()
@@ -88,7 +91,7 @@
  
              auto & contents = res.GetContents();
  
-@@ -404,8 +404,8 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
+@@ -404,8 +406,8 @@ struct S3BinaryCacheStoreImpl : public S3BinaryCacheSt
  
              for (auto object : contents) {
                  auto & key = object.GetKey();

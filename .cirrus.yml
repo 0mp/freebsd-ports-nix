@@ -6,7 +6,7 @@ task:
     - fetch ftp://ftp.freebsd.org/pub/FreeBSD/development/tarballs/ports_current.tar.gz -o /tmp/ports.tar.gz
     - tar -xf /tmp/ports.tar.gz -C /usr
     - ln -s "${PWD}" /usr/ports/sysutils/nix
-    - make -C /usr/ports/sysutils/nix all-depdends-list | grep -Eo '[^/]+/[^/]+$' | xargs pkg install -y
+    - make -C /usr/ports/sysutils/nix all-depends-list | grep -Eo '[^/]+/[^/]+$' | xargs pkg install -y
   script:
     - make -C /usr/ports/sysutils/nix stage
     - make -C /usr/ports/sysutils/nix test

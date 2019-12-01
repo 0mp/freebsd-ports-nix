@@ -1,0 +1,8 @@
+freebsd_instance:
+  image_family: freebsd-12-1
+
+task:
+  install_script:
+    - pkg install -y aws-sdk-cpp curl libnghttp2 ca_root_nss pulseaudio libsndfile flac libogg libvorbis fftw3 indexinfo fftw3-float dbus expat libICE libSM libX11 libXau libxcb libxml2 libpthread-stubs libXdmcp xorgproto libltdl consolekit2 polkit spidermonkey52 nspr libffi icu readline gettext-runtime glib pcre libiconv python36 libxslt libgcrypt libgpg-error avahi-app libdaemon dbus-glib gdbm gobject-introspection gnome_subr orc libsoxr speexdsp webrtc-audio-processing libXtst libXext libXi libXfixes aws-c-common aws-checksums aws-c-event-stream boost-libs brotli editline boehm-gc libsodium sqlite3
+    - portsnap auto
+  script: echo ok

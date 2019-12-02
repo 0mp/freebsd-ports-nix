@@ -9,5 +9,5 @@ task:
     - ln -s "${PWD}" /usr/ports/sysutils/nix
     - make -C /usr/ports/sysutils/nix all-depends-list | grep -Eo '[^/]+/[^/]+$' | xargs pkg install -y
   script:
-    - make -C /usr/ports/sysutils/nix BATCH=yes stage
+    - make -C /usr/ports/sysutils/nix BATCH=yes install
     - make -C /usr/ports/sysutils/nix BATCH=yes test

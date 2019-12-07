@@ -31,7 +31,7 @@ TEST_DEPENDS=	dot:graphics/graphviz \
 		gxargs:misc/findutils \
 		hg:devel/mercurial
 
-USES=		autoreconf bison:build compiler:c++17-lang gmake localbase \
+USES=		autoreconf bison compiler:c++17-lang gmake localbase \
 		pkgconfig sqlite:3 ssl tar:xz
 USE_GITHUB=	yes
 GH_ACCOUNT=	NixOS

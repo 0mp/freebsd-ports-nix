@@ -1,19 +1,23 @@
-# freebsd-ports-nix
+freebsd-ports-nix
+=================
 
 Nix package manager port for the FreeBSD Ports Collection.
 
-## Community
+Community
+---------
 
 Join us in the [#freebsd-nix](https://webchat.freenode.net/#freebsd-nix) channel on freenode (logs are available here: https://logs.nix.samueldr.com/freebsd-nix).
 
-## Development
+Development
+-----------
 
-- Remember to add a *nixbld* group to the `GIDs` file of your ports tree.
+-	Remember to add a *nixbld* group to the `GIDs` file of your ports tree.
 
-## References
+References
+----------
 
-- Ongoing review on the FreeBSD Phabricator: https://reviews.freebsd.org/D17766 (the patch there might not be up to date).
+-	Ongoing review on the FreeBSD Phabricator: https://reviews.freebsd.org/D17766 (the patch there might not be up to date).
 
 ### Blog posts mentioning Nix on FreeBSD
 
-- http://sandervanderburg.blogspot.com/2020/02/a-declarative-process-manager-agnostic.html
+-	http://sandervanderburg.blogspot.com/2020/02/a-declarative-process-manager-agnostic.html

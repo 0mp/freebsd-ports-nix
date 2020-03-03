@@ -31,8 +31,8 @@ TEST_DEPENDS=	dot:graphics/graphviz \
 		gxargs:misc/findutils \
 		hg:devel/mercurial
 
-USES=		autoreconf bison compiler:c++17-lang gmake localbase \
-		pkgconfig sqlite:3 ssl tar:xz
+USES=		autoreconf bison compiler:c++17-lang gmake localbase pkgconfig \
+		sqlite:3 ssl tar:xz
 USE_GITHUB=	yes
 GH_ACCOUNT=	NixOS
 USE_LDCONFIG=	yes
@@ -98,7 +98,6 @@ post-install:
 pre-test:
 	${MKDIR} /tmp/nix-test
 
-	# Patch tests.
 	${REINPLACE_CMD} -e 's| xargs | gxargs |g' ${WRKSRC}/tests/push-to-store.sh
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/timeout.nix
 	${REINPLACE_CMD} -e 's| touch | /usr/bin/touch |g' ${WRKSRC}/tests/check-reqs.nix

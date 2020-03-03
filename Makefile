@@ -47,7 +47,7 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes
-TEST_ARGS=		nix_tests="${_SETUP_TESTS} ${_PASSING_TESTS} ${_BROKEN_TESTS}"
+TEST_ARGS=		nix_tests="${_SETUP_TESTS} ${_PASSING_TESTS}"
 TEST_TARGET=		installcheck
 
 # grealpath and gnustat are needed for tests.
@@ -71,18 +71,14 @@ _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \
 _SETUP_TESTS=	init.sh
 # These tests never finish.
 _HANGING_TESTS=	restricted.sh
-# These test suffer from some problems like a misconfigued testing environment
-# (binaries are not found in the PATH) or incompatibilities between GNU and BSD
-# tools.
-_BROKEN_TESTS=	check.sh
 # These tests just pass.
 _PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
-		case-hack.sh check-refs.sh check-reqs.sh dependencies.sh \
-		dump-db.sh export-graph.sh export.sh fetchGit.sh \
-		fetchMercurial.sh fetchurl.sh filter-source.sh fixed.sh \
-		function-trace.sh gc-auto.sh gc-concurrent.sh gc-runtime.sh \
-		gc.sh hash.sh import-derivation.sh init.sh lang.sh \
-		linux-sandbox.sh logging.sh misc.sh multiple-outputs.sh \
+		case-hack.sh check-refs.sh check-reqs.sh check.sh \
+		dependencies.sh dump-db.sh export-graph.sh export.sh \
+		fetchGit.sh fetchMercurial.sh fetchurl.sh filter-source.sh \
+		fixed.sh function-trace.sh gc-auto.sh gc-concurrent.sh \
+		gc-runtime.sh gc.sh hash.sh import-derivation.sh init.sh \
+		lang.sh linux-sandbox.sh logging.sh misc.sh multiple-outputs.sh \
 		nar-access.sh nix-build.sh nix-channel.sh nix-copy-ssh.sh \
 		nix-profile.sh nix-shell.sh optimise-store.sh pass-as-file.sh \
 		placeholders.sh plugins.sh post-hook.sh pure-eval.sh \

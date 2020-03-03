@@ -2,6 +2,7 @@ freebsd_instance:
   image_family: freebsd-12-1
 
 task:
+  auto_cancellation: true
   install_script:
     - fetch ftp://ftp.freebsd.org/pub/FreeBSD/development/tarballs/ports_current.tar.gz -o /tmp/ports.tar.gz
     - tar -xf /tmp/ports.tar.gz -C /usr

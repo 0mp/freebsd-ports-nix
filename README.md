@@ -21,3 +21,8 @@ References
 ### Blog posts mentioning Nix on FreeBSD
 
 -	http://sandervanderburg.blogspot.com/2020/02/a-declarative-process-manager-agnostic.html
+
+### Interesting issues, pull requests, and other related efforts
+
+-	https://github.com/NixOS/nixpkgs/pull/81459
+-	WIP port of Nix to pkgsrc: https://wip.pkgsrc.org/cgi-bin/gitweb.cgi?p=pkgsrc-wip.git;a=tree;f=nix;hb=HEAD

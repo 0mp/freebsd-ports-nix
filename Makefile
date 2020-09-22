@@ -61,7 +61,6 @@ SUB_FILES=	pkg-message
 GROUPS=		nixbld
 
 OPTIONS_DEFINE=	DOCS
-# XXX: Test with DOCS turned off.
 
 _BASH=		${LOCALBASE}/bin/bash
 _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \

@@ -48,8 +48,8 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 # Workaround for:
 #   /usr/bin/ld: error: undefined symbol: SHA512_Update
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes
-# XXX: Tests require the port to be installed on the system. Being installed in
-# the stage directory is not enough.
+# XXX: Tests require the port to be installed on the system. It is not enough
+# to have the port staged.
 TEST_ARGS=		nix_tests="${_SETUP_TESTS} ${_PASSING_TESTS} ${_HANGING_TESTS}"
 TEST_TARGET=		installcheck
 
@@ -69,25 +69,24 @@ _STRIP_TARGETS=	bin/nix bin/nix-build bin/nix-channel bin/nix-collect-garbage \
 		bin/nix-instantiate bin/nix-prefetch-url bin/nix-store \
 		lib/libnixexpr.so lib/libnixmain.so lib/libnixstore.so \
 		lib/libnixutil.so
-
-# These tests are required to be executed before any other tests.
-_SETUP_TESTS=	init.sh
-# These tests never finish.
-_HANGING_TESTS=	restricted.sh
-# These tests just pass.
-_PASSING_TESTS=	add.sh binary-cache.sh brotli.sh build-dry.sh build-remote.sh \
-		case-hack.sh check-refs.sh check-reqs.sh check.sh \
-		dependencies.sh dump-db.sh export-graph.sh export.sh \
-		fetchGit.sh fetchMercurial.sh fetchurl.sh filter-source.sh \
-		fixed.sh function-trace.sh gc-auto.sh gc-concurrent.sh \
-		gc-runtime.sh gc.sh hash.sh import-derivation.sh init.sh \
-		lang.sh linux-sandbox.sh logging.sh misc.sh multiple-outputs.sh \
-		nar-access.sh nix-build.sh nix-channel.sh nix-copy-ssh.sh \
-		nix-profile.sh nix-shell.sh optimise-store.sh pass-as-file.sh \
-		placeholders.sh plugins.sh post-hook.sh pure-eval.sh \
-		referrers.sh remote-store.sh repair.sh run.sh search.sh \
-		secure-drv-outputs.sh signing.sh simple.sh structured-attrs.sh \
-		tarball.sh timeout.sh user-envs.sh
+# Regenerate the list of all tests with:
+# make patch && make -f $(make -V WRKSRC)/tests/local.mk -V nix_tests
+_ALL_TESTS=	init.sh hash.sh lang.sh add.sh simple.sh dependencies.sh gc.sh \
+		gc-concurrent.sh gc-auto.sh referrers.sh user-envs.sh \
+		logging.sh nix-build.sh misc.sh fixed.sh gc-runtime.sh \
+		check-refs.sh filter-source.sh remote-store.sh export.sh \
+		export-graph.sh timeout.sh secure-drv-outputs.sh nix-channel.sh \
+		multiple-outputs.sh import-derivation.sh fetchurl.sh \
+		optimise-store.sh binary-cache.sh nix-profile.sh repair.sh \
+		dump-db.sh case-hack.sh check-reqs.sh pass-as-file.sh \
+		tarball.sh restricted.sh placeholders.sh nix-shell.sh \
+		linux-sandbox.sh build-dry.sh build-remote.sh nar-access.sh \
+		structured-attrs.sh fetchGit.sh fetchMercurial.sh signing.sh \
+		run.sh brotli.sh pure-eval.sh check.sh plugins.sh search.sh \
+		nix-copy-ssh.sh post-hook.sh function-trace.sh
+# Remove problematic tests from the list:
+# - restricted.sh is hanging and never finishes.
+_PASSING_TESTS=	${_ALL_TESTS:Nrestricted.sh}
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}

@@ -12,6 +12,7 @@ task:
     - |-
       echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
     - pkg upgrade --yes
+    - xargs pkg install -y < ./dependencies.txt
     - make -C /usr/ports/sysutils/nix all-depends-list | grep -Eo '[^/]+/[^/]+$' | xargs -n 1 pkg rquery %o | xargs pkg install -y
     - make -C /usr/ports/sysutils/nix BATCH=yes depends
   script:

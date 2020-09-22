@@ -3,7 +3,7 @@
 	type: install
 	message: <<EOD
 Experimental support
----------------------------------------------
+--------------------
 
 Nix support is very much experimental on FreeBSD. The sysutils/nix port is
 mainly aimed at developers, testers, and curious users. Nix should not be

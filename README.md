@@ -1,6 +1,8 @@
 freebsd-ports-nix
 =================
 
+[![Build Status](https://api.cirrus-ci.com/github/0mp/freebsd-ports-nix.svg)](https://cirrus-ci.com/github/0mp/freebsd-ports-nix)
+
 Nix package manager port for the FreeBSD Ports Collection.
 
 Community

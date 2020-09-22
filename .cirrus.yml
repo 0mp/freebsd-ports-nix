@@ -6,7 +6,8 @@ task:
   install_script:
     - fetch ftp://ftp.freebsd.org/pub/FreeBSD/development/tarballs/ports_current.tar.gz -o /tmp/ports.tar.gz
     - tar -xf /tmp/ports.tar.gz -C /usr
-    - pw groupadd nixbld
+    - |-
+      awk -v done=0 '/# free: /{if (!done) {printf "nixbld:*:%d:\n", $3}; done=1; next} //' /usr/ports/GIDs > /tmp/GIDs && cat /tmp/GIDs > /usr/ports/GIDs
     - ln -s "${PWD}" /usr/ports/sysutils/nix
     - mkdir -p /usr/local/etc/pkg/repos
     - |-

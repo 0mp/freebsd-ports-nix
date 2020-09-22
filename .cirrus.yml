@@ -12,7 +12,8 @@ task:
     - |-
       echo 'FreeBSD: { url: "pkg+http://pkg.FreeBSD.org/${ABI}/latest" }' > /usr/local/etc/pkg/repos/FreeBSD.conf
     - pkg upgrade --yes
-    - env ASSUME_ALWAYS_YES=yes make -C /usr/ports/sysutils/nix install-missing-packages
+    - make -C /usr/ports/sysutils/nix all-depends-list | grep -Eo '[^/]+/[^/]+$' | xargs -n 1 pkg rquery %o | xargs pkg install -y
+    - make -C /usr/ports/sysutils/nix BATCH=yes depends
   script:
     - make -C /usr/ports/sysutils/nix BATCH=yes install
     - make -C /usr/ports/sysutils/nix BATCH=yes test

@@ -8,7 +8,7 @@ task:
     - tar -xf /tmp/ports.tar.gz -C /usr
     - awk -v done=0 '/# free: /{if (!done) {printf "nixbld:*:%d:\n", $3}; done=1; next} //' /usr/ports/GIDs > /tmp/GIDs && cat /tmp/GIDs > /usr/ports/GIDs
     - ln -s "${PWD}" /usr/ports/sysutils/nix
-    - make -C /usr/ports/sysutils/nix all-depends-list | grep -Eo '[^/]+/[^/]+$' | xargs pkg install -y
+    - make -C /usr/ports/sysutils/nix install-missing-packages
   script:
     - make -C /usr/ports/sysutils/nix BATCH=yes install
     - make -C /usr/ports/sysutils/nix BATCH=yes test

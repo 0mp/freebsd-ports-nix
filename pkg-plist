@@ -117,7 +117,6 @@ share/man/man8/nix-daemon.8.gz
 %%PORTDOCS%%%%DOCSDIR%%/manual/images/callouts/9.gif
 %%PORTDOCS%%%%DOCSDIR%%/manual/index.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/manual.html
-%%PORTDOCS%%%%DOCSDIR%%/manual/style.css
 %%DATADIR%%/add-nixbld-users
 %%DATADIR%%/corepkgs/buildenv.nix
 %%DATADIR%%/corepkgs/config.nix

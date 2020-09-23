@@ -19,8 +19,6 @@ BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/ax_cxx_compile_stdcxx.m4:devel/autocon
 		xmllint:textproc/libxml2 \
 		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libaws-cpp-sdk-core.so:devel/aws-sdk-cpp \
-		libaws-cpp-sdk-s3.so:devel/aws-sdk-cpp \
-		libaws-cpp-sdk-transfer.so:devel/aws-sdk-cpp \
 		libboost_context.so:devel/boost-libs \
 		libbrotlienc.so:archivers/brotli \
 		libcurl.so:ftp/curl \

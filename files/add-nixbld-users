@@ -1,5 +1,5 @@
 #! /bin/sh -
-# $FreeBSD$
+# $FreeBSD: head/sysutils/nix/files/add-nixbld-users 550026 2020-09-25 12:54:38Z 0mp $
 
 set -eu
 

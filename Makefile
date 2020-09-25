@@ -1,5 +1,5 @@
 # Created by: Mateusz Piotrowski <0mp@FreeBSD.org>
-# $FreeBSD$
+# $FreeBSD: head/sysutils/nix/Makefile 550026 2020-09-25 12:54:38Z 0mp $
 
 PORTNAME=	nix
 DISTVERSION=	2.3.7

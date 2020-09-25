@@ -18,6 +18,6 @@ for n in $(seq 1 "$1"); do
 	if pw usershow "$user" >/dev/null 2>&1; then
 		continue
 	fi
-	pw useradd "$user" -c "Nix build user $n" -d /nonexistent -G nixbld \
+	pw useradd "$user" -c "Nix build user $n" -d /var/empty -G nixbld \
 		-g nixbld -s /usr/sbin/nologin
 done

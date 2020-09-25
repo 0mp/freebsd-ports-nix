@@ -2,7 +2,7 @@
 # $FreeBSD: head/sysutils/nix/Makefile 550026 2020-09-25 12:54:38Z 0mp $
 
 PORTNAME=	nix
-DISTVERSION=	2.3.7
+DISTVERSION=	2.3.7.9999
 CATEGORIES=	sysutils
 PATCH_SITES=	https://github.com/0mp/nix/commit/
 PATCHFILES=	56dc854fa1158b5920cfeefa690e087cf13db915.patch:-p1

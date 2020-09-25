@@ -4,6 +4,8 @@
 PORTNAME=	nix
 DISTVERSION=	2.3.7
 CATEGORIES=	sysutils
+PATCH_SITES=	https://github.com/0mp/nix/commit/
+PATCHFILES=	56dc854fa1158b5920cfeefa690e087cf13db915.patch:-p1
 
 MAINTAINER=	0mp@FreeBSD.org
 COMMENT=	Purely functional package manager

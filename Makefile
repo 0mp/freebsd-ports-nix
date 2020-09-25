@@ -19,7 +19,11 @@ BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/ax_cxx_compile_stdcxx.m4:devel/autocon
 		gnustat:sysutils/coreutils \
 		grealpath:sysutils/coreutils \
 		xmllint:textproc/libxml2 \
-		xsltproc:textproc/libxslt
+		xsltproc:textproc/libxslt \
+		jq:textproc/jq \
+		libarchive>=3.1.2:archivers/libarchive \
+		googletest>0:devel/googletest \
+		nlohmann-json>=3.9.1_2:devel/nlohmann-json
 LIB_DEPENDS=	libaws-cpp-sdk-core.so:devel/aws-sdk-cpp \
 		libboost_context.so:devel/boost-libs \
 		libbrotlienc.so:archivers/brotli \

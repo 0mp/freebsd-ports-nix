@@ -34,6 +34,7 @@ USES=		autoreconf bison compiler:c++17-lang gmake localbase pkgconfig \
 		sqlite:3 ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	NixOS
+GH_TAGNAME=	7d81582
 USE_LDCONFIG=	yes
 
 HAS_CONFIGURE=		yes

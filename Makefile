@@ -48,7 +48,7 @@ CONFIGURE_ENV=		OPENSSL_CFLAGS="-I ${OPENSSLINC}" \
 MAKE_ARGS=		libutil_ALLOW_UNDEFINED=yes
 # XXX: Tests require the port to be installed on the system. It is not enough
 # to have the port staged.
-TEST_ARGS=		nix_tests="${_SETUP_TESTS} ${_PASSING_TESTS} ${_HANGING_TESTS}"
+TEST_ARGS=		nix_tests="${_PASSING_TESTS}"
 TEST_TARGET=		installcheck
 
 # grealpath and gnustat are needed for tests.

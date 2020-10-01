@@ -15,11 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/ax_cxx_compile_stdcxx.m4:devel/autoconf-archive \
 		bash:shells/bash \
-		docbook-xsl-ns>=0:textproc/docbook-xsl-ns \
+		mdbook:textproc/mdbook \
 		gnustat:sysutils/coreutils \
 		grealpath:sysutils/coreutils \
-		xmllint:textproc/libxml2 \
-		xsltproc:textproc/libxslt \
 		jq:textproc/jq \
 		libarchive>=3.1.2:archivers/libarchive \
 		googletest>0:devel/googletest \

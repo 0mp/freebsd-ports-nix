@@ -28,3 +28,4 @@ References
 
 -	https://github.com/NixOS/nixpkgs/pull/81459
 -	WIP port of Nix to pkgsrc: https://wip.pkgsrc.org/cgi-bin/gitweb.cgi?p=pkgsrc-wip.git;a=tree;f=nix;hb=HEAD
+- https://github.com/NixOS/nixpkgs/pull/82131

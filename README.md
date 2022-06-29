@@ -15,7 +15,7 @@ The binary package can be installed with `pkg install nix`.
 Community
 ---------
 
-Join us in the [#freebsd-nix](https://webchat.freenode.net/#freebsd-nix) channel on freenode (logs are available here: https://logs.nix.samueldr.com/freebsd-nix).
+Join us on https://libera.chat, channel `#freebsd-nix`.
 
 References
 ----------
